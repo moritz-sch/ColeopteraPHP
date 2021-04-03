@@ -1,0 +1,19 @@
+body { color:#FFFFFF; }
+
+a { text-decoration:none; border-style:none; }
+a:link { color:#814A96; }
+a:visited { color:#814A96; }
+a:active { color:#814A96;}
+a:hover { color:#DADC3A; }
+a:focus { color:#DADC3A; }
+
+h1 { color:#463B61; }
+h2 { color:#504D65; }
+h3 { color:#5A5479; }
+h4 { color:#FFFFFF; font-style: italic; }
+
+.larva { color:#305ACD; }
+.nodet { color:#959595; }
+.rl { color:#F04A20; }
+.rln { color:#5CA23C; }
+.totalrow { color:#A628EF;}

@@ -1,0 +1,104 @@
+Scripts to create HTML pages from a database of beetle species and to create preview images for these pages.
+These scripts are free software, released under the GNU General Public License Version 3. See License.txt.
+
+To run the scripts use XAMPP (https://apachefriends.org/).
+Of course, they should also run on a server which supports PHP and MySQL.
+
+I don't know how to code but it appears to somehow work.
+
+The following PHP files are provided:
+
+create_pages.php
+----------------
+
+The script create_pages.php allows the user to create an overview page with pictures of beetle species from a database (named "coleoptera").
+The rows of the table in the database correspond to beetle species. The table ("table 1") should to have the following columns:
+1)ID
+Not actually needed, but I use a unique ID for each species
+2)species
+The name of the species
+3)family
+The family of the species
+4)subfamily 
+The family of the species. If there is none, leave this blank.
+5)rl
+The status of the species in the red list. Leave blank if it is not a red list species. Otherwise possible entries are:
+V (near threatened), 3 (vulnerable), 2 (endangered), 1 (critically endangered), ex (extinct), D (insufficient data), R (rare)
+6)imago
+If ONLY larvae of this species were found, this entry should be "n", otherwise blank
+7)larva
+If larvae of this species were found, this entry should be "y", otherwise blank
+
+Moreover, beetles which could not be identified to species level can also be included in the overview page. These are listed in a separate table in the database ("table 2") with the following columns:
+1)ID
+See above
+2)species
+The name of the "species". Ok, it's not actually a species, but something like "Lathrobium sp.", "Quedius (Raphirus) sp.", "Quedius cf. mesomelinus", "Aleocharinae sp." etc.
+3)family
+The family of the beetle if known, otherwise blank.
+4)subfamily
+The subfamily of the beetle if it exists and is known, otherwise blank.
+5)rl
+Allows to specify a red list status although this might be pointless for unidentified beetles. Its needed nevertheless to make my life easier, sorry.
+6)larva
+If it is a larva, this entry should be "y", otherwise blank.
+
+The script create_pages.php also allows the user to create an overview page of beetle larvae. The larvae which could be identified to species level are taken from the "table 1", non-identified ones are in another table ("table 3") with the following columns:
+1)ID
+See above
+2)species
+See information on "table 2".
+3)family
+See information on "table 2".
+4)subfamily
+See information on "table 2".
+5)rl
+See information on "table 2".
+
+The name of the database and the tables as well as a few other variables can be changed in the file global_variables.php.
+
+The script also allows for the creation of a page with a few statistics and numbers.
+
+All HTML files, as well as the file "coleoptera.css" should be placed in the same directory which will be called "(Base Directory)" in the following.
+
+
+create_images.php
+-----------------
+
+The script create_images.php allows the user to create preview pages for the pages created by create_pages.php. You can choose if you want to overwrite (all) existing preview images.
+The provided images should be in JPEG format and have the file extension ".jpg". They should also have a 4:3 width to height ratio (else they get distorted).
+For each row in any of the tables described above place the image file corresponding to this row in
+"(Base Directory)/(Family)"
+if it is an imago and
+"(Base Directory)/Larven"
+if it is a larva.
+The base directory can be specified in the file global_variables.php. (Family) should be replaced by the name of the family, for example a picture of a Rove Beetle imago should be placed in
+"(Base Directory)/Staphylinidae"
+The name of the image file is derived from the "species" entry in the table in the following way:
+-remove all periods and brackets from the string (e.g "Quedius (Raphirus) sp." -> "Quedius Raphirus sp")
+-replace all whitespaces with underscores (e.g "Quedius Raphirus sp" -> "Quedius_Raphirus_sp")
+-add the file extension ".jpg" (e.g "Quedius_Raphirus_sp.jpg")
+
+If the family is not known, place the file in
+"(Base Directory)/Unknown"
+
+The location of the base directory can be specified in global_variables.php. In the same file the size of the preview images and the compression quality can also be changed.
+The systematics used can be seen in systematics.php (more information below).
+
+create_images_windows.php
+-------------------------
+
+Same as above but for Windows (the only difference is that "\" instead of "/" is used in paths).
+
+
+global_variables.php
+--------------------
+
+This file includes global variables used in create_pages.php and create_images.php.
+
+
+systematics.php
+---------------
+
+This file includes the systematics on superfamily, family and subfamily level for the central European beetle fauna, written as PHP functions. In the same fashion it also includes the (approximate) number of species for each family as well as German vernacular names for families and subfamilies where they exist.
+
