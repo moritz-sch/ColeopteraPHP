@@ -25,7 +25,7 @@ along with this program.  If not, see <https://www.gnu.org/licenses/>.
   $MarginRight = 100;
   $MarginTop = 60;
   
-  $ImageDirectory = "/media/veracrypt1/Bilder/Website/Coleoptera/"; //das ist das Verzeichnis, in dem die Verzeichnisse fuer die Familien liegen. Falls es das dasselbe Verzeichnis ist, in dem auch die php-Datei liegt, setze $ImageDirectory = ""; (entsprechende relative Pfade funktionieren ebenfalls) WICHTIG: am Ende muss ein "/" (Linux) oder "\\" (Windows) stehen stehen!
+  $ImageDirectory = ""; //das ist das Verzeichnis, in dem die Verzeichnisse fuer die Familien liegen. Falls es das dasselbe Verzeichnis ist, in dem auch die php-Datei liegt, setze $ImageDirectory = ""; (entsprechende relative Pfade funktionieren ebenfalls) WICHTIG: am Ende muss ein "/" (Linux) oder "\\" (Windows) stehen stehen!
   $PreviewImageWidth = 200;
   $PreviewImageHeight = 150;
   $PreviewImageQuality = 84;
